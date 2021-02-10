@@ -22,6 +22,7 @@ mod operator;
 mod rename;
 mod type_declaration;
 mod type_instantiation;
+mod typecheck;
 mod var;
 mod var_assignment;
 
@@ -40,6 +41,7 @@ pub use operator::Operator;
 pub use rename::Rename;
 pub use type_declaration::TypeDec;
 pub use type_instantiation::TypeInstantiation;
+pub use typecheck::TypeCheck;
 pub use var::Var;
 pub use var_assignment::VarAssign;
 
@@ -55,7 +57,7 @@ pub enum InstrKind {
 
 /// The `Instruction` trait is the basic trait for all of Jinko's execution nodes. Each
 /// node that can be executed needs to implement it
-pub trait Instruction: InstructionClone + Downcast + Rename {
+pub trait Instruction: InstructionClone + Downcast + TypeCheck + Rename {
     /// Execute the instruction, altering the state of the interpreter. Executing
     /// this method returns an InstrKind, so either a statement or an expression
     /// containing a "return value".
