@@ -41,4 +41,11 @@
 //! AST-like way. Before execution, typecheck your interpreter to ensure its validity
 //! and propagate type errors early and quickly.
 
-pub trait TypeCheck {}
+use crate::JkError;
+use crate::instruction::TypeDec;
+
+pub trait TypeCheck {
+    /// Return the type of the current instruction. If a clash or invalidity arises,
+    /// raise a JkError::TypeCheck
+    fn typecheck(&mut self) -> Result<TypeDec, JkError>;
+}

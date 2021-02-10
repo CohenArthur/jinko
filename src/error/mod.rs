@@ -9,6 +9,7 @@ use colored::Colorize;
 pub enum JkErrKind {
     Parsing,
     Interpreter,
+    TypeChecker,
     IO,
 }
 
